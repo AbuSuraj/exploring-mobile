@@ -7,7 +7,6 @@ const loadPhone = async (searchText, dataLimit) => {
 const displayPhone = (phones, dataLimit) => {
   console.log(phones);
   const phonesContainer = document.getElementById("phones-container");
-  phonesContainer.innerHTML = "";
 
   const showall = document.getElementById("show-all");
   if (dataLimit && phones.length > 10) {
@@ -26,7 +25,7 @@ const displayPhone = (phones, dataLimit) => {
   } else {
     noPhoneMessage.classList.add("d-none");
   }
-
+  phonesContainer.innerHTML = "";
   phones.forEach((phone) => {
     const phoneDiv = document.createElement("div");
     phoneDiv.classList.add("col");
@@ -47,13 +46,14 @@ const displayPhone = (phones, dataLimit) => {
   });
   toggler(false);
 };
+// let item;
 const searchProcess = (dataLimit) => {
   toggler(true);
   const inputField = document.getElementById("input-field");
   const item = inputField.value;
-  inputField.value = "";
-  console.log("kita or");
+  console.log(item);
   loadPhone(item, dataLimit);
+  //   inputField.value = "";
 };
 const searchPhone = () => {
   searchProcess(10);
@@ -70,4 +70,7 @@ const toggler = (isLoading) => {
 document.getElementById("btn-showAll").addEventListener("click", function () {
   //   console.log("ki problem");
   searchProcess();
+  const inputField = document.getElementById("input-field");
+  const item = inputField.value;
+  inputField.value = "";
 });
